@@ -1,0 +1,674 @@
+openapi: 3.0.0
+info:
+  title: Restaurant point-of-sale
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Customer
+  - name: Ingredient
+  - name: Item
+  - name: Order
+  - name: Receipt
+  - name: Report
+  - name: Table
+  - name: Ticket
+  - name: User
+paths:
+  /customer:
+    post:
+      tags:
+        - Customer
+      summary: Create Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ankit
+                email: ankit@yahoo.com
+                phone: '1212121212'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Customer
+      summary: Get all customers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customer/{id}:
+    get:
+      tags:
+        - Customer
+      summary: Get customer by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Customer
+      summary: Update customer
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Customer
+      summary: Delete customer
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ingredient:
+    post:
+      tags:
+        - Ingredient
+      summary: Add ingredient
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ingredient/{id}:
+    put:
+      tags:
+        - Ingredient
+      summary: Update ingredient
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Ingredient
+      summary: Delete ingredient
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /item:
+    post:
+      tags:
+        - Item
+      summary: Add item
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Item
+      summary: Get all items
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /item/{id}:
+    get:
+      tags:
+        - Item
+      summary: Get item by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Item
+      summary: Update item
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Item
+      summary: Delete item
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/seat/{id}:
+    post:
+      tags:
+        - Order
+      summary: Seat party
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                partySize: 12
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order:
+    post:
+      tags:
+        - Order
+      summary: Create Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer: 63ef2485ba7718732eea296d
+                orderDetails:
+                  - item: butter chicken
+                    quantity: 3
+                  - item: paneer tikka
+                    quantity: 3
+                orderStatus: Ready
+                tableNumber: 7
+                waiter: '3041'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Order
+      summary: Get all orders
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/{id}:
+    get:
+      tags:
+        - Order
+      summary: Get order by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63e1dca71c5852bab1140449
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Order
+      summary: Update order
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Order
+      summary: Delete order
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/{tableNumber}:
+    get:
+      tags:
+        - Order
+      summary: Get order by table number
+      parameters:
+        - name: tableNumber
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/waiter/{id}:
+    get:
+      tags:
+        - Order
+      summary: Get active orders of waiter
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3041'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /receipt/create/{id}:
+    post:
+      tags:
+        - Receipt
+      summary: Create receipt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tip: 50
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63ef24c5ba7718732eea2984
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /receipt/create/customer/{id}:
+    post:
+      tags:
+        - Receipt
+      summary: Create receipt from Customer ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tip: 50
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /receipt/create/table/{num}:
+    post:
+      tags:
+        - Receipt
+      summary: Create receipt from table num
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tip: 50
+      parameters:
+        - name: num
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /receipt/pay/{id}:
+    post:
+      tags:
+        - Receipt
+      summary: Pay bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                rating: 4
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63ef25277db823afc7657593
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /report/sales:
+    get:
+      tags:
+        - Report
+      summary: Sales report
+      parameters:
+        - name: timeframe
+          in: query
+          schema:
+            type: string
+          example: month
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /report/inventory:
+    get:
+      tags:
+        - Report
+      summary: Get Inventory
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /report/popular:
+    get:
+      tags:
+        - Report
+      summary: Popular items
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /report/loyalCustomers:
+    get:
+      tags:
+        - Report
+      summary: Get loyal customers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /report/performance:
+    get:
+      tags:
+        - Report
+      summary: Get staff performance
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /table:
+    post:
+      tags:
+        - Table
+      summary: Add table
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Table
+      summary: Get all tables
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /table/{id}:
+    put:
+      tags:
+        - Table
+      summary: Delete table
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ticket:
+    get:
+      tags:
+        - Ticket
+      summary: Active tickets
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ticket/{id}:
+    put:
+      tags:
+        - Ticket
+      summary: Update ticket
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63dc8ed83f33a185889c7d9e
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user:
+    post:
+      tags:
+        - User
+      summary: Add employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: random
+                password: random
+                salary: 3000
+                rating: 4
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - User
+      summary: Get all employees
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/login:
+    post:
+      tags:
+        - User
+      summary: Login user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                employeeCode: '3395'
+                password: captain
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Get employee by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - User
+      summary: Update employee
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - User
+      summary: Delete employee
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
